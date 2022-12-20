@@ -1,6 +1,7 @@
 from hrrlib.core import HRR
 from hrrlib.core import Permutation
 import numpy as np
+import random
 
 
 def permutation(
@@ -264,7 +265,7 @@ def __orthogonal_permutation_element(n: int, cycle_length: int, seed=None):
             arr[i:j] = subgroup_elements
             i += len(subgroup_elements)
         j += len(subgroup_elements)
-    arr = cycle_length * (arr[permutation(m)] / n)
+    arr = cycle_length * (arr[permutation(m, seed=seed)] / n)
     w = (np.pi * 2) / cycle_length
     complexs = np.exp(1j * w * arr)
     return __from_template(reals, complexs)
